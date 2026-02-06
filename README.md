@@ -5,7 +5,7 @@ Multitasking text-based windowing system for Raspberry Pi Pico, using a PS/2 key
 ## Requirements
 - a Raspberry Pi Pico (or any other RP2040-based board)
 - a VGA monitor
-    - 3x 330hm resistors
+    - 3x 330Ω resistors
 - a PS/2 keyboard
     - some form of level shifting (from 5V to 3.3V)
 

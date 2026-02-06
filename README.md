@@ -9,6 +9,18 @@ Multitasking text-based windowing system for Raspberry Pi Pico, using a PS/2 key
 - a PS/2 keyboard
     - some form of level shifting (from 5V to 3.3V)
 
+## Getting started
+- Install the Raspberry Pi Pico SDK (set the `PICO_SDK_PATH` environment variable) and the RP2040 toolchain (CMake, Ninja/Make and `arm-none-eabi-gcc`).  
+- Clone this repository with its dependencies:
+  - `git clone --recursive https://github.com/rp194/pico-window.git`
+  - or `git submodule update --init --recursive` if you already cloned it.
+- Add the library to your Pico project CMakeLists:
+  - `add_subdirectory(pico-window)`
+  - `target_link_libraries(<your_target> window)`
+- Configure and build your project as usual for the Pico (e.g. `cmake -B build -S .` then `cmake --build build`). This will produce a UF2 for your firmware that includes pico-window.
+- Flash the generated UF2 to the board (drag-and-drop to RPI-RP2 or use `picotool load -f <file>.uf2`) and connect the VGA monitor and PS/2 keyboard to interact with your windows.
+- To see a full buildable example, clone and build [the example project](https://github.com/tvlad1234/pico-window-example.git) following the same CMake flow.
+
 ## How it works
 This library creates an environment that allows you to simultaneously run multiple windowed programs on the Pi Pico, as FreeRTOS tasks. Programs can read/write characters from/into one or more windows. Keypresses are only sent to the window in focus. Focus can be switched between windows by pressing Shift+Tab.
 
